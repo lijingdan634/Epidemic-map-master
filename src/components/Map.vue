@@ -10,6 +10,7 @@
 
 <script src="https://www.echartsjs.com/examples/vendors/jquery/jquery.js"></script>
 <script>
+import res from '../json/chinaMap'
 export default {
     name: "Map",
     data() {
@@ -21,14 +22,15 @@ export default {
         this.$charts.chinaMap("chinaMap")
         let component = this;
         var newArr = [];
+       
         this.$.ajax({
             url: "https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5",
             dataType: "jsonp",
-            success: function (data) {
-                //console.log(data.data)
-                var res = data.data || "";
-                res = JSON.parse(res);
-                //console.log(res)
+            success: function (response) {
+                //发送网络请求
+                // const str = JSON.stringify(response.data || '');
+                // var res = str.parseJSON()
+                // console.log(res);
                 if (res) {
                     var province = res.areaTree[0].children;
                     for (var i = 0; i < province.length; i++) {
@@ -38,9 +40,8 @@ export default {
                         }   
                     newArr.push(json) 
                     }   
+                    console.log(this);
                 }
-                // console.log(newArr)
-                // console.log(JSON.stringify(newArr))
                 for (var i = 0; i < newArr.length; i++) {
                     var temp = {
                         name: newArr[i].name,
@@ -55,31 +56,10 @@ export default {
                     };
                     component.cityMapData.push(temp);
                 }
-                // console.log(component.cityMapData)
                 component.$charts.chinaMap("chinaMap", component.cityMapData);
             }
         })
         
-        // this.$api.getCaseNum({
-        //         key: "d7c335f2e7856ec48c1962a99fcc6f98"
-        //     })
-        //     .then(res => {
-        //         for (var i = 0; i < res.newslist.length; i++) {
-        //             var temp = {
-        //                 name: res.newslist[i].provinceShortName,
-        //                 value: res.newslist[i].currentConfirmedCount,
-        //                 itemStyle: {
-        //                     normal: {
-        //                         areaColor: this.setColor(
-        //                             res.newslist[i].currentConfirmedCount
-        //                         )
-        //                     }
-        //                 }
-        //             };
-        //             this.cityMapData.push(temp);
-        //         }
-        //         this.$charts.chinaMap("chinaMap", this.cityMapData);
-        //     });
     },
     methods: {
         setColor(value) {

@@ -13,9 +13,6 @@
       </ul>
    </div>
 
-
-  
-
   </div>
 </template>
 
@@ -39,13 +36,11 @@ export default {
         key: "0b2292c01bf100466bc2336564f17674",
       })
       .then((res) => {
-        
         // console.log(res);
         this.riskArea = {
           high: res.newslist[0].riskarea.high,
           mid: res.newslist[0].riskarea.mid,
         };
-        console.log(this.riskArea);
       });
   }
 }

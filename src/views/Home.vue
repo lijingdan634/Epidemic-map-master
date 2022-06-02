@@ -31,7 +31,6 @@ export default {
         key: "0b2292c01bf100466bc2336564f17674",
       })
       .then((res) => {
-        //console.log(res);
         this.newsData = res.newslist[0].news
         this.infoData = {
           note1: res.newslist[0].desc.note1,

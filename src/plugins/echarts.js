@@ -12,7 +12,8 @@ const install = function(Vue){
                                 triggerOn:"click",
                                 enterable:true,
                                 formatter(data) {
-                                    return "<a  style='color:#fff' href='#/city/"+ data.name +"'><div><p>" + data.seriesName + ":" + data.name + "</p><p>现存确诊:" + data.value + "</p></div></a>"
+                                    var val = data.value || 0
+                                    return "<a  style='color:#fff' href='#/city/"+ data.name +"'><div><p>" + data.seriesName + ":" + data.name + "</p><p>现存确诊:" + val + "</p></div></a>"
                                 }
                             },
                             series:[{
@@ -44,23 +45,20 @@ const install = function(Vue){
                                     }
                                 },
                                 data:data
-                                // data:[
-                                //     {name:"北京",value:191,itemStyle:{ normal:{ areaColor:"#ff0000" } }},
-                                //     {name:"内蒙古",value:191,itemStyle:{ normal:{ areaColor:"#ff0000" } }}
-                                // ]
+                                
                             }]
                         }
                         this.chart.setOption(option)
                     },
                     provinceCity(id,city,data){
                         this.chart = echarts.init(document.getElementById(id));
-                        // console.log(data);
                         var option = {
                             tooltip:{
                                 triggerOn:"click",
                                 enterable:true,
                                 formatter(data) {
-                                    return "<div><p>"+data.name + "</p><p>现存确诊:" + data.value + "</p></div>"
+                                  var val = data.value || 0
+                                    return "<div><p>"+data.name + "</p><p>现存确诊:" + val + "</p></div>"
                                 }
                             },
                             series:[{
@@ -88,8 +86,7 @@ const install = function(Vue){
                                         borderWidth: 0,
                                         shadowColor: 'rgba(0, 0, 0, 0.5)'
                                     },
-                                    
-
+                                  
                                 },
                                 data:data
                             }]

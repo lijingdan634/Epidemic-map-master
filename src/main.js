@@ -1,11 +1,12 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import "./assets/css/common.css";
 import api from "./api/index";
 import Echarts from "./plugins/echarts"
-import "../node_modules/echarts/map/js/china"
+import "./assets/css/common.css";
+
 import $ from 'jquery'
+import "../node_modules/echarts/map/js/china"
 import "../node_modules/echarts/map/js/province/anhui"
 import "../node_modules/echarts/map/js/province/aomen"
 import "../node_modules/echarts/map/js/province/beijing"
